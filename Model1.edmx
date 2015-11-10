@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="patentModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="patentModelStoreContainer">
+          <EntitySet Name="epo_biblio" EntityType="patentModel.Store.epo_biblio" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="epo_family" EntityType="patentModel.Store.epo_family" store:Type="Tables" store:Schema="dbo" store:Name="epo_family">
+            <DefiningQuery>SELECT 
+      [epo_family].[familyId] AS [familyId], 
+      [epo_family].[pubNo] AS [pubNo], 
+      [epo_family].[pubKind] AS [pubKind], 
+      [epo_family].[pubDate] AS [pubDate], 
+      [epo_family].[appNo] AS [appNo], 
+      [epo_family].[appKind] AS [appKind], 
+      [epo_family].[appDate] AS [appDate], 
+      [epo_family].[priority] AS [priority], 
+      [epo_family].[id] AS [id]
+      FROM [dbo].[epo_family] AS [epo_family]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="epo_legal" EntityType="patentModel.Store.epo_legal" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="epo_legalnull" EntityType="patentModel.Store.epo_legalnull" store:Type="Tables" store:Schema="dbo" store:Name="epo_legalnull">
+            <DefiningQuery>SELECT 
+      [epo_legalnull].[pubno] AS [pubno]
+      FROM [dbo].[epo_legalnull] AS [epo_legalnull]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <EntityType Name="epo_biblio">
+          <Key>
+            <PropertyRef Name="pubNo" />
+          </Key>
+          <Property Name="pubNo" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="ipcr" Type="nvarchar(max)" />
+          <Property Name="ec" Type="nvarchar(max)" />
+          <Property Name="priority" Type="nvarchar(max)" />
+          <Property Name="applicant" Type="nvarchar(max)" />
+          <Property Name="inventor" Type="nvarchar(max)" />
+          <Property Name="title" Type="nvarchar(max)" />
+          <Property Name="abstract" Type="nvarchar(max)" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“patent.dbo.epo_family”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+        <EntityType Name="epo_family">
+          <Key>
+            <PropertyRef Name="familyId" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="familyId" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="pubNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="pubKind" Type="nchar" MaxLength="5" />
+          <Property Name="pubDate" Type="datetime" />
+          <Property Name="appNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="appKind" Type="nchar" MaxLength="5" />
+          <Property Name="appDate" Type="datetime" />
+          <Property Name="priority" Type="varchar(max)" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="epo_legal">
+          <Key>
+            <PropertyRef Name="pubNo" />
+            <PropertyRef Name="legCode" />
+            <PropertyRef Name="ldate" />
+          </Key>
+          <Property Name="pubNo" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="legCode" Type="nchar" Nullable="false" MaxLength="5" />
+          <Property Name="codeDesc" Type="nvarchar" MaxLength="256" />
+          <Property Name="legPre" Type="nvarchar(max)" />
+          <Property Name="ldate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“patent.dbo.epo_legalnull”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+        <EntityType Name="epo_legalnull">
+          <Key>
+            <PropertyRef Name="pubno" />
+          </Key>
+          <Property Name="pubno" Type="nvarchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="patentModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="patentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="epo_biblio" EntityType="patentModel.epo_biblio" />
+          <EntitySet Name="epo_family" EntityType="patentModel.epo_family" />
+          <EntitySet Name="epo_legal" EntityType="patentModel.epo_legal" />
+          <EntitySet Name="epo_legalnull" EntityType="patentModel.epo_legalnull" />
+        </EntityContainer>
+        <EntityType Name="epo_biblio">
+          <Key>
+            <PropertyRef Name="pubNo" />
+          </Key>
+          <Property Name="pubNo" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="ipcr" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ec" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="priority" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="applicant" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="inventor" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="title" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="abstract" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="epo_family">
+          <Key>
+            <PropertyRef Name="familyId" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="familyId" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="pubNo" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="pubKind" Type="String" MaxLength="5" Unicode="true" FixedLength="true" />
+          <Property Name="pubDate" Type="DateTime" />
+          <Property Name="appNo" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="appKind" Type="String" MaxLength="5" Unicode="true" FixedLength="true" />
+          <Property Name="appDate" Type="DateTime" />
+          <Property Name="priority" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="epo_legal">
+          <Key>
+            <PropertyRef Name="pubNo" />
+            <PropertyRef Name="legCode" />
+            <PropertyRef Name="ldate" />
+          </Key>
+          <Property Name="pubNo" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="legCode" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="true" />
+          <Property Name="codeDesc" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="legPre" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ldate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="epo_legalnull">
+          <Key>
+            <PropertyRef Name="pubno" />
+          </Key>
+          <Property Name="pubno" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="patentModelStoreContainer" CdmEntityContainer="patentEntities">
+          <EntitySetMapping Name="epo_biblio"><EntityTypeMapping TypeName="patentModel.epo_biblio"><MappingFragment StoreEntitySet="epo_biblio">
+            <ScalarProperty Name="pubNo" ColumnName="pubNo" />
+            <ScalarProperty Name="ipcr" ColumnName="ipcr" />
+            <ScalarProperty Name="ec" ColumnName="ec" />
+            <ScalarProperty Name="priority" ColumnName="priority" />
+            <ScalarProperty Name="applicant" ColumnName="applicant" />
+            <ScalarProperty Name="inventor" ColumnName="inventor" />
+            <ScalarProperty Name="title" ColumnName="title" />
+            <ScalarProperty Name="abstract" ColumnName="abstract" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="epo_family"><EntityTypeMapping TypeName="patentModel.epo_family"><MappingFragment StoreEntitySet="epo_family">
+            <ScalarProperty Name="familyId" ColumnName="familyId" />
+            <ScalarProperty Name="pubNo" ColumnName="pubNo" />
+            <ScalarProperty Name="pubKind" ColumnName="pubKind" />
+            <ScalarProperty Name="pubDate" ColumnName="pubDate" />
+            <ScalarProperty Name="appNo" ColumnName="appNo" />
+            <ScalarProperty Name="appKind" ColumnName="appKind" />
+            <ScalarProperty Name="appDate" ColumnName="appDate" />
+            <ScalarProperty Name="priority" ColumnName="priority" />
+            <ScalarProperty Name="id" ColumnName="id" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="epo_legal"><EntityTypeMapping TypeName="patentModel.epo_legal"><MappingFragment StoreEntitySet="epo_legal">
+            <ScalarProperty Name="pubNo" ColumnName="pubNo" />
+            <ScalarProperty Name="legCode" ColumnName="legCode" />
+            <ScalarProperty Name="codeDesc" ColumnName="codeDesc" />
+            <ScalarProperty Name="legPre" ColumnName="legPre" />
+            <ScalarProperty Name="ldate" ColumnName="ldate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="epo_legalnull"><EntityTypeMapping TypeName="patentModel.epo_legalnull"><MappingFragment StoreEntitySet="epo_legalnull">
+            <ScalarProperty Name="pubno" ColumnName="pubno" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="patentModel.epo_biblio" Width="1.5" PointX="0.75" PointY="0.75" Height="2.5430916341145835" IsExpanded="true" />
+        <EntityTypeShape EntityType="patentModel.epo_family" Width="1.5" PointX="2.75" PointY="0.75" Height="2.7341113281249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="patentModel.epo_legal" Width="1.5" PointX="4.75" PointY="0.75" Height="1.9700325520833326" IsExpanded="true" />
+        <EntityTypeShape EntityType="patentModel.epo_legalnull" Width="1.5" PointX="0.75" PointY="4.75" Height="1.2059537760416674" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

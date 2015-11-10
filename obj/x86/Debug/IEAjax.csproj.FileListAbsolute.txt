@@ -1,0 +1,13 @@
+E:\coding\IEAjax\IEAjax\bin\Debug\IEAjax.exe
+E:\coding\IEAjax\IEAjax\bin\Debug\IEAjax.pdb
+E:\coding\IEAjax\IEAjax\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\coding\IEAjax\IEAjax\obj\x86\Debug\IEAjax.Form1.resources
+E:\coding\IEAjax\IEAjax\obj\x86\Debug\IEAjax.Properties.Resources.resources
+E:\coding\IEAjax\IEAjax\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+E:\coding\IEAjax\IEAjax\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+E:\coding\IEAjax\IEAjax\obj\x86\Debug\IEAjax.exe
+E:\coding\IEAjax\IEAjax\obj\x86\Debug\IEAjax.pdb
+E:\coding\IEAjax\IEAjax\bin\Debug\IEAjax.exe.config
+E:\coding\IEAjax\IEAjax\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\coding\IEAjax\IEAjax\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\coding\IEAjax\IEAjax\obj\x86\Debug\IEAjax.Form2.resources

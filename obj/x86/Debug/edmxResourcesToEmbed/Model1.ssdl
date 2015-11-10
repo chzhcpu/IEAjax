@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="patentModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="patentModelStoreContainer">
+    <EntitySet Name="epo_biblio" EntityType="patentModel.Store.epo_biblio" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="epo_family" EntityType="patentModel.Store.epo_family" store:Type="Tables" store:Schema="dbo" store:Name="epo_family">
+      <DefiningQuery>SELECT 
+      [epo_family].[familyId] AS [familyId], 
+      [epo_family].[pubNo] AS [pubNo], 
+      [epo_family].[pubKind] AS [pubKind], 
+      [epo_family].[pubDate] AS [pubDate], 
+      [epo_family].[appNo] AS [appNo], 
+      [epo_family].[appKind] AS [appKind], 
+      [epo_family].[appDate] AS [appDate], 
+      [epo_family].[priority] AS [priority], 
+      [epo_family].[id] AS [id]
+      FROM [dbo].[epo_family] AS [epo_family]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="epo_legal" EntityType="patentModel.Store.epo_legal" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="epo_legalnull" EntityType="patentModel.Store.epo_legalnull" store:Type="Tables" store:Schema="dbo" store:Name="epo_legalnull">
+      <DefiningQuery>SELECT 
+      [epo_legalnull].[pubno] AS [pubno]
+      FROM [dbo].[epo_legalnull] AS [epo_legalnull]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+  <EntityType Name="epo_biblio">
+    <Key>
+      <PropertyRef Name="pubNo" />
+    </Key>
+    <Property Name="pubNo" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="ipcr" Type="nvarchar(max)" />
+    <Property Name="ec" Type="nvarchar(max)" />
+    <Property Name="priority" Type="nvarchar(max)" />
+    <Property Name="applicant" Type="nvarchar(max)" />
+    <Property Name="inventor" Type="nvarchar(max)" />
+    <Property Name="title" Type="nvarchar(max)" />
+    <Property Name="abstract" Type="nvarchar(max)" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“patent.dbo.epo_family”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="epo_family">
+    <Key>
+      <PropertyRef Name="familyId" />
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="familyId" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="pubNo" Type="nvarchar" MaxLength="20" />
+    <Property Name="pubKind" Type="nchar" MaxLength="5" />
+    <Property Name="pubDate" Type="datetime" />
+    <Property Name="appNo" Type="nvarchar" MaxLength="20" />
+    <Property Name="appKind" Type="nchar" MaxLength="5" />
+    <Property Name="appDate" Type="datetime" />
+    <Property Name="priority" Type="varchar(max)" />
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="epo_legal">
+    <Key>
+      <PropertyRef Name="pubNo" />
+      <PropertyRef Name="legCode" />
+      <PropertyRef Name="ldate" />
+    </Key>
+    <Property Name="pubNo" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="legCode" Type="nchar" Nullable="false" MaxLength="5" />
+    <Property Name="codeDesc" Type="nvarchar" MaxLength="256" />
+    <Property Name="legPre" Type="nvarchar(max)" />
+    <Property Name="ldate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“patent.dbo.epo_legalnull”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="epo_legalnull">
+    <Key>
+      <PropertyRef Name="pubno" />
+    </Key>
+    <Property Name="pubno" Type="nvarchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+</Schema>

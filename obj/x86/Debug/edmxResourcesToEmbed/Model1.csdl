@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="patentModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="patentEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="epo_biblio" EntityType="patentModel.epo_biblio" />
+    <EntitySet Name="epo_family" EntityType="patentModel.epo_family" />
+    <EntitySet Name="epo_legal" EntityType="patentModel.epo_legal" />
+    <EntitySet Name="epo_legalnull" EntityType="patentModel.epo_legalnull" />
+  </EntityContainer>
+  <EntityType Name="epo_biblio">
+    <Key>
+      <PropertyRef Name="pubNo" />
+    </Key>
+    <Property Name="pubNo" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="ipcr" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ec" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="priority" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="applicant" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="inventor" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="title" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="abstract" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="epo_family">
+    <Key>
+      <PropertyRef Name="familyId" />
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="familyId" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="pubNo" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="pubKind" Type="String" MaxLength="5" Unicode="true" FixedLength="true" />
+    <Property Name="pubDate" Type="DateTime" />
+    <Property Name="appNo" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="appKind" Type="String" MaxLength="5" Unicode="true" FixedLength="true" />
+    <Property Name="appDate" Type="DateTime" />
+    <Property Name="priority" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="epo_legal">
+    <Key>
+      <PropertyRef Name="pubNo" />
+      <PropertyRef Name="legCode" />
+      <PropertyRef Name="ldate" />
+    </Key>
+    <Property Name="pubNo" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="legCode" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="true" />
+    <Property Name="codeDesc" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="legPre" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ldate" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="epo_legalnull">
+    <Key>
+      <PropertyRef Name="pubno" />
+    </Key>
+    <Property Name="pubno" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+  </EntityType>
+</Schema>

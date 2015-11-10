@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="patentModelStoreContainer" CdmEntityContainer="patentEntities">
+    <EntitySetMapping Name="epo_biblio">
+      <EntityTypeMapping TypeName="patentModel.epo_biblio">
+        <MappingFragment StoreEntitySet="epo_biblio">
+          <ScalarProperty Name="pubNo" ColumnName="pubNo" />
+          <ScalarProperty Name="ipcr" ColumnName="ipcr" />
+          <ScalarProperty Name="ec" ColumnName="ec" />
+          <ScalarProperty Name="priority" ColumnName="priority" />
+          <ScalarProperty Name="applicant" ColumnName="applicant" />
+          <ScalarProperty Name="inventor" ColumnName="inventor" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="abstract" ColumnName="abstract" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="epo_family">
+      <EntityTypeMapping TypeName="patentModel.epo_family">
+        <MappingFragment StoreEntitySet="epo_family">
+          <ScalarProperty Name="familyId" ColumnName="familyId" />
+          <ScalarProperty Name="pubNo" ColumnName="pubNo" />
+          <ScalarProperty Name="pubKind" ColumnName="pubKind" />
+          <ScalarProperty Name="pubDate" ColumnName="pubDate" />
+          <ScalarProperty Name="appNo" ColumnName="appNo" />
+          <ScalarProperty Name="appKind" ColumnName="appKind" />
+          <ScalarProperty Name="appDate" ColumnName="appDate" />
+          <ScalarProperty Name="priority" ColumnName="priority" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="epo_legal">
+      <EntityTypeMapping TypeName="patentModel.epo_legal">
+        <MappingFragment StoreEntitySet="epo_legal">
+          <ScalarProperty Name="pubNo" ColumnName="pubNo" />
+          <ScalarProperty Name="legCode" ColumnName="legCode" />
+          <ScalarProperty Name="codeDesc" ColumnName="codeDesc" />
+          <ScalarProperty Name="legPre" ColumnName="legPre" />
+          <ScalarProperty Name="ldate" ColumnName="ldate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="epo_legalnull">
+      <EntityTypeMapping TypeName="patentModel.epo_legalnull">
+        <MappingFragment StoreEntitySet="epo_legalnull">
+          <ScalarProperty Name="pubno" ColumnName="pubno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
